@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head><link rel="stylesheet" href="/index.HASH_REF_3725600685c33da3d80b056bf13e6104.css">
         <title>Empty project</title>
         <meta charset="utf-8">
     </head>
@@ -53,6 +53,6 @@
           </div>
           
 
-        <script src="index.js"></script>
+        <script src="/index.HASH_REF_0fa2489aa94c8731ee2aee9f3fafb3e2.js"></script>
     </body>
 </html>

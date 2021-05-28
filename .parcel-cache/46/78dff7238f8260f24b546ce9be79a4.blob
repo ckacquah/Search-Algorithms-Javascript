@@ -1,0 +1,5 @@
+var _stylesScss = require("./styles.scss");
+var _jquery = require("jquery");
+var _popperJs = require("popper.js");
+var _bootstrap = require("bootstrap");
+console.log("hello world!");
