@@ -11,15 +11,14 @@
     "start": "parcel src/index.html",
     "build-prod": "parcel build src/index.html",
     "test": "jest",
-    "check": "prettier --check ./src/**/*.js ./postcss.config.js",
-    "format": "prettier --write ./src/**/*.js ./postcss.config.js"
+    "check": "prettier --check ./src/**/*.js ./src/**/**/*.js ./postcss.config.js",
+    "format": "prettier --write ./src/**/*.js ./src/**/**/*.js ./postcss.config.js"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
     "@simonwep/pickr": "^1.8.1",
     "bootstrap": "^5.0.1",
-    "jquery": "^3.6.0",
-    "popper.js": "^1.16.1"
+    "jquery": "^3.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
