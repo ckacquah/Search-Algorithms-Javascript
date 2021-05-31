@@ -1,6 +1,4 @@
 // import bootstrap 5
-@import "bootstrap/scss/bootstrap.scss";
-
 // Color picker nano theme
 @import "@simonwep/pickr/dist/themes/nano.min.css";
 
@@ -10,4 +8,9 @@ $bg: black;
 h1 {
   color: $primary-color;
   background-color: $bg;
+}
+
+#mainCanvas {
+  position: relative;
+  height: 100%;
 }
