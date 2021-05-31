@@ -26,6 +26,7 @@
     "@popperjs/core": "^2.9.2",
     "@simonwep/pickr": "^1.8.1",
     "bootstrap": "^5.0.1",
+    "bootstrap-dark-5": "^1.0.1",
     "jquery": "^3.6.0"
   },
   "devDependencies": {

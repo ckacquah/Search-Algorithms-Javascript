@@ -2258,6 +2258,13 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
+bootstrap-dark-5@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-dark-5/-/bootstrap-dark-5-1.0.1.tgz#a8520eaedab12c79b0fe794b96cd1ee7e1458fd1"
+  integrity sha512-wcKS7mUDKznxzT+RclYfJed/pv47yphhmck5G9OS1LuwWNJK38BkjwRUeQmTMfWltm0eDYZiUxcW7ouiANHmdw==
+  dependencies:
+    bootstrap "^5.0.1"
+
 bootstrap@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.0.1.tgz#e7939d599119dc818a90478a2a299bdaff037e09"

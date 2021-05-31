@@ -1,6 +1,16 @@
 import Pickr from "@simonwep/pickr";
 
-function createColorPicker(id, defaultColor) {
+function buildCreateColorPicker(colorInputData) {
+  return (id) => {
+    const colorPicker = _createColorPicker("#" + id, colorInputData[id]);
+    colorPicker.on("change", (color) => {
+      colorPicker.applyColor(false);
+      colorInputData[id] = color;
+    });
+  };
+}
+
+function _createColorPicker(id, defaultColor) {
   const colorPicker = Pickr.create({
     el: id,
     theme: "nano",
@@ -25,22 +35,17 @@ function createColorPicker(id, defaultColor) {
     ],
 
     components: {
-      // Main components
       preview: true,
-      opacity: true,
       hue: true,
 
-      // Input / output Options
       interaction: {
         rgba: true,
         hex: true,
         input: true,
-        clear: true,
-        save: true,
       },
     },
   });
   return colorPicker;
 }
 
-export { createColorPicker };
+export { buildCreateColorPicker };

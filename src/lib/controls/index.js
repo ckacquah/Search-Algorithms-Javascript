@@ -1,20 +1,26 @@
-import { createColorPicker } from "./color";
+import { buildCreateColorPicker } from "./color";
 
-const startColorPicker = createColorPicker("#startColor", "#EE964B");
+const colorInputData = {
+  startColor: "#EE964B",
+  stopColor: "#28AFB0",
+  pathColor: "#F4D35E",
+  emptyColor: "#DEFFF2",
+  obstacleColor: "#19647E",
+};
 
-const stopColorPicker = createColorPicker("#stopColor", "#28AFB0");
+const createColorPicker = buildCreateColorPicker(colorInputData);
 
-const pathColorPicker = createColorPicker("#pathColor", "#F4D35E");
-
-const emptyColorPicker = createColorPicker("#emptyColor", "#DEFFF2");
-
-const obstacleColorPicker = createColorPicker("#obstacleColor", "#19647E");
+const stopColorPicker = createColorPicker("stopColor");
+const pathColorPicker = createColorPicker("pathColor");
+const startColorPicker = createColorPicker("startColor");
+const emptyColorPicker = createColorPicker("emptyColor");
+const obstacleColorPicker = createColorPicker("obstacleColor");
 
 export {
-  startColorPicker,
+  colorInputData,
   stopColorPicker,
   pathColorPicker,
+  startColorPicker,
   emptyColorPicker,
   obstacleColorPicker,
-  createColorPicker,
 };
