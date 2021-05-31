@@ -1,88 +1,114 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Empty project</title>
+
+<head>
+    <title>Search Algorithms</title>
     <meta charset="utf-8" />
-  </head>
-  <body>
-    <div class="container-fuild">
-      <div class="row">
-        <div class="col-3">
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button
-                  class="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Accordion Item #1
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse show"
-                aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample"
-              >
-                <div class="accordion-body">
-                  <div class="mb-3 row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label"
-                      >Email</label
-                    >
-                    <div class="col-sm-10">
-                      <input
-                        type="text"
-                        readonly
-                        class="form-control-plaintext"
-                        id="staticEmail"
-                        value="email@example.com"
-                      />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-0">
+                <div class="accordion" id="accordionSideNav">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="gridAccordion">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseGridControls" aria-expanded="true"
+                                aria-controls="collapseGridControls">
+                                Grid
+                            </button>
+                        </h2>
+                        <div id="collapseGridControls" class="accordion-collapse collapse show"
+                            aria-labelledby="gridAccordion" data-bs-parent="#accordionSideNav">
+                            <div class="accordion-body">
+                                <label for="" class="form-label">Aspect Ratio</label>
+                                <br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="aspectRatioRadio"
+                                        id="aspectRatioRadio1" checked>
+                                    <label class="form-check-label" for="aspectRatioRadio1">
+                                        1:1
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="aspectRatioRadio"
+                                        id="aspectRatioRadio2">
+                                    <label class="form-check-label" for="aspectRatioRadio2">
+                                        4:3
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="aspectRatioRadio"
+                                        id="aspectRatioRadio3">
+                                    <label class="form-check-label" for="aspectRatioRadio3">
+                                        16:9
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="aspectRatioRadio"
+                                        id="aspectRatioRadio4">
+                                    <label class="form-check-label" for="aspectRatioRadio4">
+                                        Custom
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <label for="gridHeight" class="form-label">Height</label>
+                                    <input type="range" value="20" class="form-range" min="10" max="200"
+                                        id="gridHeight">
+                                    <label for="gridWidth" class="form-label">Width</label>
+                                    <input type="range" value="20" class="form-range" min="10" max="200" id="gridWidth">
+                                </div>
+                                <hr />
+                                <div class="containe-fluid px-0">
+                                    <div class="container-fluid px-0">
+                                        <div class="d-flex d-flex-row aligm-items-center justify-content-between">
+                                            <label for="" class="form-label">Obstacle</label>
+                                            <div id="obstacleColor" class="color-picker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid px-0">
+                                        <div class="d-flex d-flex-row aligm-items-center justify-content-between">
+                                            <label for="" class="form-label">Empty</label>
+                                            <div id="emptyColor" class="color-picker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid px-0">
+                                        <div class="d-flex d-flex-row aligm-items-center justify-content-between">
+                                            <label for="" class="form-label">Start</label>
+                                            <div id="startColor" class="color-picker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid px-0">
+                                        <div class="d-flex d-flex-row aligm-items-center justify-content-between">
+                                            <label for="" class="form-label">Stop</label>
+                                            <div id="stopColor" class="color-picker"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label"
-                      >Password</label
-                    >
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control" id="inputPassword" />
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+            <div class="col py-3">
+                Main Grid Area
+                <div class="container-fluid">
+                    <div class="row flex-nowrap">
+                        <div class="col-11 col-sm-12">
+                            <div class="containe-fluid">
+                                <canvas id="mainCanvas">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-9">
-          <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label"
-              >Email</label
-            >
-            <div class="col-sm-10">
-              <input
-                type="text"
-                readonly
-                class="form-control-plaintext"
-                id="staticEmail"
-                value="email@example.com"
-              />
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label"
-              >Password</label
-            >
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword" />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <script src="index.js"></script>
-  </body>
+</body>
+
 </html>

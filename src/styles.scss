@@ -1,7 +1,9 @@
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "bootstrap/scss/bootstrap.scss";
+
+// Color picker nano theme
+@import "@simonwep/pickr/dist/themes/nano.min.css";
 
 $primary-color: white;
-
 
 $bg: black;
 h1 {
