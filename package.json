@@ -2,14 +2,22 @@
   "name": "search-algorithms-javascript",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "main": "index.html",
+  "targets": {
+    "main": {
+      "engines": {
+        "distDir": "dir",
+        "browsers": "> 0.25%"
+      }
+    }
+  },
   "scripts": {
-    "clean": "rm dist/bundle.js",
+    "clean": "rm -rf dist/ .cache .parcel-cache",
     "start": "parcel src/index.html",
-    "build-prod": "parcel build src/index.html",
+    "build": "parcel build src/index.html",
     "test": "jest",
     "check": "prettier --check ./src/**/*.js ./src/**/**/*.js ./postcss.config.js",
     "format": "prettier --write ./src/**/*.js ./src/**/**/*.js ./postcss.config.js"
