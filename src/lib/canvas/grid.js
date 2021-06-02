@@ -82,7 +82,7 @@ const drawGrid = function ({
         width: gridXCellSize,
         height: gridYCellSize,
         color: [13, 213, 252],
-        blur: 5,
+        blur: 10,
       });
     }
   }
@@ -142,9 +142,9 @@ const drawNeonRect = function ({
 }) {
   const border = 1.5;
   const strokeColor =
-    "rgba(" + color[0] + "," + color[1] + "," + color[2] + ")";
+    "rgba(" + color[0] + "," + color[1] + "," + color[2] + ", 1.0)";
   const shadowColor =
-    "rgba(" + color[0] + "," + color[1] + "," + color[2] + "0.2 )";
+    "rgba(" + color[0] + "," + color[1] + "," + color[2] + ", 0.2 )";
   context.shadowBlur = blur;
   context.shadowColor = shadowColor;
   context.strokeStyle = strokeColor;
@@ -154,7 +154,7 @@ const drawNeonRect = function ({
   context.lineWidth = blur * 0.65;
   drawRectangle({ context, startX, startY, width, height, border });
   context.strokeStyle = strokeColor;
-  context.lineWidth = blur * 0.5;
+  context.lineWidth = blur * 0.45;
   drawRectangle({ context, startX, startY, width, height, border });
   context.strokeStyle = strokeColor;
   context.lineWidth = blur * 0.25;
