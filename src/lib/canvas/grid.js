@@ -81,7 +81,8 @@ const drawGrid = function ({
         }),
         width: gridXCellSize,
         height: gridYCellSize,
-        color: "rgba( 13, 213, 252 )",
+        color: [13, 213, 252],
+        blur: 5,
       });
     }
   }
@@ -137,27 +138,31 @@ const drawNeonRect = function ({
   width,
   height,
   color,
+  blur,
 }) {
   const border = 1.5;
-  width -= 5;
-  height -= 5;
-  context.shadowColor = color;
-  context.shadowBlur = 5;
-  context.strokeStyle = color;
-  context.lineWidth = 7.5;
+  const strokeColor =
+    "rgba(" + color[0] + "," + color[1] + "," + color[2] + ")";
+  const shadowColor =
+    "rgba(" + color[0] + "," + color[1] + "," + color[2] + "0.2 )";
+  context.shadowBlur = blur;
+  context.shadowColor = shadowColor;
+  context.strokeStyle = strokeColor;
+  context.lineWidth = blur * 0.75;
   drawRectangle({ context, startX, startY, width, height, border });
-  context.strokeStyle = color;
-  context.lineWidth = 6;
+  context.strokeStyle = strokeColor;
+  context.lineWidth = blur * 0.65;
   drawRectangle({ context, startX, startY, width, height, border });
-  context.strokeStyle = color;
-  context.lineWidth = 4.5;
+  context.strokeStyle = strokeColor;
+  context.lineWidth = blur * 0.5;
   drawRectangle({ context, startX, startY, width, height, border });
-  context.strokeStyle = color;
-  context.lineWidth = 3;
+  context.strokeStyle = strokeColor;
+  context.lineWidth = blur * 0.25;
   drawRectangle({ context, startX, startY, width, height, border });
   context.strokeStyle = "#fff";
-  context.lineWidth = 1.5;
+  context.lineWidth = blur * 0.15;
   drawRectangle({ context, startX, startY, width, height, border });
+  context.fillStyle = strokeColor;
   context.fillRect(startX, startY, width, height);
 };
 
