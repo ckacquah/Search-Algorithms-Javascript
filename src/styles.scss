@@ -1,16 +1,26 @@
-// import bootstrap 5
+@import "bootstrap-dark-5/dist/css/bootstrap-night.css";
+
 // Color picker nano theme
 @import "@simonwep/pickr/dist/themes/nano.min.css";
 
-$primary-color: white;
-
-$bg: black;
-h1 {
-  color: $primary-color;
-  background-color: $bg;
+body {
+  overflow-x: hidden;
 }
 
-#mainCanvas {
-  position: relative;
-  height: 100%;
+.sidenav-container {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.canvas-container {
+  display: flex;
+  height: 30.625rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
 }

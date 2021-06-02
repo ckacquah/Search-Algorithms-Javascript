@@ -9,12 +9,15 @@ import {
   obstacleColorPicker,
 } from "./lib/controls";
 
-import { grid } from "./lib/canvas";
+import { grid, canvas } from "./lib/canvas";
 
 grid.init();
 
+console.log(canvas);
+
 export {
   grid,
+  canvas,
   startColorPicker,
   stopColorPicker,
   pathColorPicker,
