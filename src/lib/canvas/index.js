@@ -1,8 +1,8 @@
 import { createGrid } from "./grid";
 import { context, canvas } from "./canvas";
 
-canvas.width = 900;
-canvas.height = 400;
+canvas.width = 1000;
+canvas.height = 500;
 
 const grid = createGrid({
   context: context,
@@ -10,10 +10,10 @@ const grid = createGrid({
   gridHeight: canvas.height,
   gridXPadding: 10,
   gridYPadding: 10,
-  gridXCellSpace: 9,
-  gridYCellSpace: 9,
-  gridXCellCount: 10,
-  gridYCellCount: 5,
+  gridXCellSpace: 10,
+  gridYCellSpace: 10,
+  gridXCellCount: 20,
+  gridYCellCount: 10,
 });
 
 export { grid, canvas };
