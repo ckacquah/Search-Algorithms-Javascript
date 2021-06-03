@@ -14,15 +14,15 @@
                 <div class="sidenav-container border-end">
                     <div class="accordion" id="accordion-sidenav">
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="gridAccordion">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse-size-controls" aria-expanded="false"
+                            <h2 class="accordion-header" id="size-accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse-size-controls" aria-expanded="true"
                                     aria-controls="collapse-size-controls">
                                     Size
                                 </button>
                             </h2>
-                            <div id="collapse-size-controls" class="accordion-collapse collapsed"
-                                aria-labelledby="gridAccordion" data-bs-parent="#accordion-sidenav">
+                            <div id="collapse-size-controls" class="accordion-collapse collapse show"
+                                aria-labelledby="size-accordion-header" data-bs-parent="#accordion-sidenav">
                                 <div class="accordion-body">
                                     <label for="" class="form-label">Aspect Ratio</label>
                                     <br>
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="gridAccordion">
+                            <h2 class="accordion-header" id="color-accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapse-color-controls" aria-expanded="false"
                                     aria-controls="#collapse-color-controls">
@@ -75,7 +75,7 @@
                                 </button>
                             </h2>
                             <div id="collapse-color-controls" class="accordion-collapse collapsed"
-                                aria-labelledby="gridAccordion" data-bs-parent="#accordion-sidenav">
+                                aria-labelledby="color-accordion-header" data-bs-parent="#accordion-sidenav">
                                 <div class="accordion-body">
                                     <div class="containe-fluid px-0">
                                         <div class="container-fluid px-0">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="gridAccordion">
+                            <h2 class="accordion-header" id="spacing-accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapse-spacing-controls" aria-expanded="false"
                                     aria-controls="#collapse-spacing-controls">
@@ -121,7 +121,7 @@
                                 </button>
                             </h2>
                             <div id="collapse-spacing-controls" class="accordion-collapse collapsed"
-                                aria-labelledby="gridAccordion" data-bs-parent="#accordion-sidenav">
+                                aria-labelledby="spacing-accordion-header" data-bs-parent="#accordion-sidenav">
                                 <div class="accordion-body">
                                     <label for="grid-cell-x-space" class="form-label">Grid Space Horizontal</label>
                                     <input type="range" value="20" class="form-range" min="10" max="200"
