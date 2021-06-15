@@ -1,5 +1,6 @@
 import "jquery";
 import "bootstrap";
+import "./controls";
 
 import {
   startColorPicker,
@@ -7,9 +8,9 @@ import {
   pathColorPicker,
   emptyColorPicker,
   obstacleColorPicker,
-} from "./lib/controls";
+} from "./controls";
 
-import { grid, canvas } from "./lib/canvas";
+import { grid, canvas } from "./canvas";
 
 grid.init();
 
