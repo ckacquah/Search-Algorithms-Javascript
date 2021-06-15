@@ -1,7 +1,6 @@
-@import "bootstrap-dark-5/dist/css/bootstrap-night.css";
-
-// Color picker nano theme
-@import "@simonwep/pickr/dist/themes/nano.min.css";
+@import "bootstrap/scss/bootstrap.scss";
+// @import "bootstrap-dark-5/scss/bootstrap-night.scss";
+@import "@simonwep/pickr/src/scss/themes/nano.scss";
 
 body {
   overflow-x: hidden;
