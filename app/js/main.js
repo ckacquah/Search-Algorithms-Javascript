@@ -14,7 +14,7 @@ import { grid, canvas } from "./canvas";
 
 grid.init();
 
-console.log(canvas);
+console.log("nothing");
 
 export {
   grid,
