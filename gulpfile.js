@@ -1,7 +1,5 @@
-// Load Gulp...of course
-const { src, dest, task, watch, series, parallel } = require("gulp");
+const gulp = require("gulp");
 
-// CSS related plugins
 const sass = require("gulp-sass");
 const autoprefixer = require("gulp-autoprefixer");
 
@@ -16,55 +14,34 @@ const stripDebug = require("gulp-strip-debug");
 // Utility plugins
 const rename = require("gulp-rename");
 const sourcemaps = require("gulp-sourcemaps");
-const notify = require("gulp-notify");
 const plumber = require("gulp-plumber");
 const options = require("gulp-options");
 const gulpif = require("gulp-if");
 
 // Browers related plugins
 const browserSync = require("browser-sync").create();
+const reload = browserSync.reload;
 
 // Project related variables
-const styleSRC = "./app/scss/style.scss";
-const styleURL = "./dist/";
+const styleSRC = "app/scss/style.scss";
+const styleURL = "dist/";
 const mapURL = "./";
 
-const jsSRC = "./app/js/";
+const jsSRC = "app/js/";
 const jsFront = "main.js";
 const jsFiles = [jsFront];
-const jsURL = "./dist/";
+const jsURL = "dist/";
 
-// const imgSRC = "./src/images/**/*";
-// const imgURL = "./dist/images/";
+const htmlSRC = "*.html";
+const htmlURL = "dist/";
 
-// const fontsSRC = "./src/fonts/**/*";
-// const fontsURL = "./dist/fonts/";
+const styleWatch = "app/scss/**/*.scss";
+const jsWatch = "app/js/**/*.js";
+const htmlWatch = "*.html";
 
-const htmlSRC = "./**/*.html";
-const htmlURL = "./dist/";
-
-const styleWatch = "./app/scss/**/*.scss";
-const jsWatch = "./app/js/**/*.js";
-// const imgWatch = "./src/images/**/*.*";
-// const fontsWatch = "./src/fonts/**/*.*";
-const htmlWatch = "./**/*.html";
-
-// Tasks
-function browser_sync() {
-  browserSync.init({
-    server: {
-      baseDir: "./dist/",
-    },
-  });
-}
-
-function reload(done) {
-  browserSync.reload();
-  done();
-}
-
-function css(done) {
-  src([styleSRC])
+gulp.task("css", function (done) {
+  gulp
+    .src([styleSRC])
     .pipe(sourcemaps.init())
     .pipe(
       sass({
@@ -77,12 +54,20 @@ function css(done) {
     .pipe(autoprefixer())
     .pipe(rename({ suffix: ".min" }))
     .pipe(sourcemaps.write(mapURL))
-    .pipe(dest(styleURL))
+    .pipe(gulp.dest(styleURL))
     .pipe(browserSync.stream());
-  done();
-}
 
-function js(done) {
+  done();
+});
+
+gulp.task("reload", function (done) {
+  reload();
+  done();
+});
+
+gulp.task("css-watch", gulp.series("css", "reload"));
+
+gulp.task("js", function (done) {
   jsFiles.map(function (entry) {
     return browserify({
       entries: [jsSRC + entry],
@@ -100,43 +85,35 @@ function js(done) {
       .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(uglify())
       .pipe(sourcemaps.write("."))
-      .pipe(dest(jsURL))
+      .pipe(gulp.dest(jsURL))
       .pipe(browserSync.stream());
   });
   done();
-}
+});
 
-function triggerPlumber(src_file, dest_file) {
-  return src(src_file).pipe(plumber()).pipe(dest(dest_file));
-}
+gulp.task("js-watch", gulp.series("js", "reload"));
 
-// function images() {
-//   return triggerPlumber(imgSRC, imgURL);
-// }
+gulp.task("html", function (done) {
+  gulp.src(htmlSRC).pipe(plumber()).pipe(gulp.dest(htmlURL));
+  done();
+});
 
-// function fonts() {
-//   return triggerPlumber(fontsSRC, fontsURL);
-// }
+gulp.task("html-watch", gulp.series("html", "reload"));
 
-function html() {
-  return triggerPlumber(htmlSRC, htmlURL);
-}
+gulp.task("build", gulp.series("html", "css", "js"), function (done) {
+  done();
+});
 
-function watch_files() {
-  watch(styleWatch, series(css, reload));
-  watch(jsWatch, series(js, reload));
-  // watch(imgWatch, series(images, reload));
-  // watch(fontsWatch, series(fonts, reload));
-  watch(htmlWatch, series(html, reload));
-  src(jsURL + "main.min.js").pipe(
-    notify({ message: "Gulp is Watching, Happy Coding!" })
-  );
-}
+gulp.task("default", function () {
+  gulp.series("html", "css", "js");
 
-task("css", css);
-task("js", js);
-// task("images", images);
-// task("fonts", fonts);
-task("html", html);
-task("default", parallel(css, js, /* images, fonts, */ html));
-task("watch", parallel(browser_sync, watch_files));
+  browserSync.init({
+    server: {
+      baseDir: "./dist/",
+    },
+  });
+
+  gulp.watch(jsWatch, gulp.series("js-watch"));
+  gulp.watch(styleWatch, gulp.series("css-watch"));
+  gulp.watch(htmlWatch, gulp.series("html-watch"));
+});

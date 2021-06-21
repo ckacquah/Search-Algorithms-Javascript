@@ -7,11 +7,12 @@
   "license": "MIT",
   "main": "index.html",
   "scripts": {
-    "clean": "rm -rf dist/ .cache",
+    "clean": "rm -rf dist/* .cache",
     "test": "jest",
-    "check": "prettier --check ./src/**/*.js ./src/**/**/*.js ./postcss.config.js",
-    "format": "prettier --write ./src/**/*.js ./src/**/**/*.js ./postcss.config.js",
-    "gulp": "gulp"
+    "check": "prettier --check {,*/**/}*.{js,jsx,json}",
+    "format": "prettier --write {,*/**/}*.{js,jsx,json} ",
+    "build": "gulp build",
+    "start": "gulp"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
@@ -24,7 +25,6 @@
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/register": "^7.14.5",
-    "@parcel/transformer-sass": "2.0.0-beta.2",
     "autoprefixer": "^10.2.6",
     "babel-jest": "^27.0.1",
     "babelify": "^10.0.0",
