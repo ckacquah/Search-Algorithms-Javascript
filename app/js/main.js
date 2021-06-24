@@ -1,6 +1,5 @@
 import "jquery";
 import "bootstrap";
-import "./controls";
 
 import {
   startColorPicker,
@@ -13,8 +12,6 @@ import {
 import { grid, canvas } from "./canvas";
 
 grid.init();
-
-console.log("nothing");
 
 export {
   grid,

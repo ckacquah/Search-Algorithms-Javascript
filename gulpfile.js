@@ -104,16 +104,20 @@ gulp.task("build", gulp.series("html", "css", "js"), function (done) {
   done();
 });
 
-gulp.task("default", function () {
-  gulp.series("html", "css", "js");
+gulp.task("watch", function (done) {
+  gulp.watch(jsWatch, gulp.series("js-watch"));
+  gulp.watch(styleWatch, gulp.series("css-watch"));
+  gulp.watch(htmlWatch, gulp.series("html-watch"));
+  done();
+});
 
+gulp.task("browser-sync", function (done) {
   browserSync.init({
     server: {
       baseDir: "./dist/",
     },
   });
-
-  gulp.watch(jsWatch, gulp.series("js-watch"));
-  gulp.watch(styleWatch, gulp.series("css-watch"));
-  gulp.watch(htmlWatch, gulp.series("html-watch"));
+  done();
 });
+
+gulp.task("default", gulp.series("build", "browser-sync", "watch"));
