@@ -13,9 +13,14 @@ export function depthFirstSearch(startNode, stopNode) {
 
   do {
     if (parentNode !== stopNode) {
+      console.log(parentNode);
       for (let key in parentNode.neighbours) {
         currentNode = parentNode.neighbours[key];
-        if (currentNode.type !== NodeType.NODE_TYPE_OBSTACLE) {
+        if (
+          currentNode !== null &&
+          !visited.includes(currentNode) &&
+          currentNode.type !== NodeType.NODE_TYPE_OBSTACLE
+        ) {
           currentNode.parent = parentNode;
           if (currentNode !== stopNode) {
             queue.shift(startNode);

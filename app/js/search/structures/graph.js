@@ -1,3 +1,5 @@
+import { NodeType } from "./node";
+
 export function buildCreateGraph(createNode) {
   return (x, y) => {
     const update = () => {};
@@ -20,12 +22,12 @@ export function buildCreateGraph(createNode) {
       for (let i = 0; i < x; i++) {
         const row = [];
         for (let j = 0; j < y; j++) {
-          const newNode = createNode(i, j);
+          const newNode = createNode({ x: i, y: j });
           if (j > 0) {
             row[j - 1].neighbours.right = newNode;
             newNode.neighbours.left = row[j - 1];
           }
-          if (prevRow) {
+          if (prevRow.length !== 0) {
             prevRow[j].neighbours.down = newNode;
             newNode.neighbours.top = prevRow[j];
           }
@@ -34,6 +36,16 @@ export function buildCreateGraph(createNode) {
         network.push(row);
         prevRow = row;
       }
+    };
+
+    const setStart = (x, y) => {
+      startNode = network[x][y];
+      startNode.type = NodeType.NODE_TYPE_START;
+    };
+
+    const setStop = (x, y) => {
+      stopNode = network[x][y];
+      stopNode.type = NodeType.NODE_TYPE_STOP;
     };
 
     const reset = () => {};
@@ -57,6 +69,8 @@ export function buildCreateGraph(createNode) {
       forward,
       backward,
       complete,
+      setStop,
+      setStart,
     });
   };
 }

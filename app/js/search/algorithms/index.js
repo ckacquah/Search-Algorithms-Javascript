@@ -1,4 +1,4 @@
-import { depthFirstSearch } from "./depth-first";
-import { breadthFistSearch } from "./breadth-first";
+import { depthFirstSearch } from "./depth-first-search";
+import { breadthFistSearch } from "./breadth-first-search";
 
 export { breadthFistSearch, depthFirstSearch };

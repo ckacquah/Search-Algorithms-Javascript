@@ -23,11 +23,16 @@ const createGrid = function ({
     space: gridYCellSpace,
     padding: gridYPadding,
   });
-  const init = () => {
-    drawCell(0, 0, [255, 255, 0]);
-    drawCell(0, 1, [255, 255, 0]);
+  const clear = (color) => {
+    context.clearRect(0, 0, gridWidth, gridHeight);
+    const fillColor =
+      "rgba(" + color[0] + "," + color[1] + "," + color[2] + ", 0.2 )";
+    context.fillStyle = fillColor;
+    context.fillRect(0, 0, gridWidth, gridHeight);
   };
-
+  const init = (draw) => {
+    window.requestAnimationFrame(draw);
+  };
   const drawCell = (x, y, color) => {
     drawGridCell({
       blur: 10,
@@ -46,6 +51,7 @@ const createGrid = function ({
 
   return {
     init,
+    clear,
     drawCell,
     context,
     gridWidth,

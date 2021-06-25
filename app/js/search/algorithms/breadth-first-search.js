@@ -29,6 +29,7 @@ export function breadthFistSearch(startNode, stopNode) {
 
   currentNode = parentNode;
   while (currentNode.parent) {
+    currentNode.type = NodeType.NODE_TYPE_PATH;
     path.push(currentNode);
     currentNode = currentNode.parent;
     return Object.freeze({
