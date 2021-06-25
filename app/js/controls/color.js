@@ -7,6 +7,7 @@ function buildCreateColorPicker(colorInputData) {
       colorPicker.applyColor(false);
       colorInputData[id] = color;
     });
+    return colorPicker;
   };
 }
 

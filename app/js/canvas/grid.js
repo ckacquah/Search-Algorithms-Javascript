@@ -23,69 +23,82 @@ const createGrid = function ({
     space: gridYCellSpace,
     padding: gridYPadding,
   });
-  const init = () => {
-    drawGrid({
+  const clear = (color) => {
+    context.clearRect(0, 0, gridWidth, gridHeight);
+    const fillColor =
+      "rgba(" + color[0] + "," + color[1] + "," + color[2] + ", 0.2 )";
+    context.fillStyle = fillColor;
+    context.fillRect(0, 0, gridWidth, gridHeight);
+  };
+  const init = (draw) => {
+    window.requestAnimationFrame(draw);
+  };
+  const drawCell = (x, y, color) => {
+    drawGridCell({
+      blur: 10,
+      color,
       context,
+      gridXIndex: x,
+      gridYIndex: y,
       gridXPadding,
       gridYPadding,
-      gridYCellSize,
       gridXCellSize,
-      gridXCellCount,
-      gridYCellCount,
+      gridYCellSize,
       gridXCellSpace,
       gridYCellSpace,
     });
   };
+
   return {
-    init: init,
-    ctx: context,
-    gridWidth: gridWidth,
-    gridHeight: gridHeight,
-    gridXPadding: gridXPadding,
-    gridYPadding: gridYPadding,
-    gridXCellSize: gridXCellSize,
-    gridYCellSize: gridYCellSize,
-    gridXCellSpace: gridXCellSpace,
-    gridYCellSpace: gridYCellSpace,
-    gridXCellCount: gridXCellCount,
-    gridYCellCount: gridYCellCount,
+    init,
+    clear,
+    drawCell,
+    context,
+    gridWidth,
+    gridHeight,
+    gridXPadding,
+    gridYPadding,
+    gridXCellSize,
+    gridYCellSize,
+    gridXCellSpace,
+    gridYCellSpace,
+    gridXCellCount,
+    gridYCellCount,
   };
 };
 
-const drawGrid = function ({
+const drawGridCell = function ({
+  blur,
+  color,
   context,
+  gridXIndex,
+  gridYIndex,
   gridXPadding,
   gridYPadding,
-  gridYCellSize,
   gridXCellSize,
-  gridXCellCount,
-  gridYCellCount,
+  gridYCellSize,
   gridXCellSpace,
   gridYCellSpace,
 }) {
-  for (var i = 0; i < gridXCellCount; i++) {
-    for (var j = 0; j < gridYCellCount; j++) {
-      drawNeonRect({
-        context,
-        startX: calculateCellStart({
-          padding: gridXPadding,
-          index: i,
-          space: gridXCellSpace,
-          size: gridXCellSize,
-        }),
-        startY: calculateCellStart({
-          padding: gridYPadding,
-          index: j,
-          space: gridYCellSpace,
-          size: gridYCellSize,
-        }),
-        width: gridXCellSize,
-        height: gridYCellSize,
-        color: [13, 213, 252],
-        blur: 10,
-      });
-    }
-  }
+  drawNeonRect({
+    context,
+    startX: calculateCellStart({
+      padding: gridXPadding,
+      index: gridXIndex,
+      space: gridXCellSpace,
+      size: gridXCellSize,
+    }),
+    startY: calculateCellStart({
+      padding: gridYPadding,
+      index: gridYIndex,
+      space: gridYCellSpace,
+      size: gridYCellSize,
+    }),
+    width: gridXCellSize,
+    height: gridYCellSize,
+    color,
+    blur,
+  });
 };
 
 const calculateCellSize = ({ padding, count, space, size }) =>
