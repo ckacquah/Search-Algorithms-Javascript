@@ -9,36 +9,39 @@ export function depthFirstSearch(startNode, stopNode) {
   startNode.parent = null;
   queue.push(startNode);
   visited.push(startNode);
-  parentNode = queue.pop();
+  parentNode = queue.shift();
+
+  if (startNode === stopNode) {
+    throw new Error(
+      "[ERROR] depthFirstSearch(start, stop) -> start should not be equal to stop"
+    );
+  }
 
   do {
-    if (parentNode !== stopNode) {
-      console.log(parentNode);
-      for (let key in parentNode.neighbours) {
-        currentNode = parentNode.neighbours[key];
-        if (
-          currentNode !== null &&
-          !visited.includes(currentNode) &&
-          currentNode.type !== NodeType.NODE_TYPE_OBSTACLE
-        ) {
-          currentNode.parent = parentNode;
-          if (currentNode !== stopNode) {
-            queue.shift(startNode);
-            visited.push(currentNode);
-          }
-        }
+    for (let key in parentNode.neighbours) {
+      currentNode = parentNode.neighbours[key];
+      if (
+        currentNode != null &&
+        !visited.includes(currentNode) &&
+        currentNode.type !== NodeType.NODE_TYPE_OBSTACLE
+      ) {
+        currentNode.parent = parentNode;
+        if (currentNode !== stopNode) {
+          queue.unshift(currentNode);
+          visited.push(currentNode);
+        } else break;
       }
-      parentNode = queue.pop();
     }
-  } while (parentNode !== stopNode);
+    parentNode = queue.shift();
+  } while (currentNode !== stopNode);
 
-  currentNode = parentNode;
   while (currentNode.parent) {
     path.push(currentNode);
     currentNode = currentNode.parent;
-    return Object.freeze({
-      path,
-      visited,
-    });
   }
+
+  return Object.freeze({
+    path,
+    visited,
+  });
 }

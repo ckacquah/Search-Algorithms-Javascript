@@ -9,32 +9,39 @@ export function breadthFistSearch(startNode, stopNode) {
   startNode.parent = null;
   queue.push(startNode);
   visited.push(startNode);
-  parentNode = queue.pop();
+  parentNode = queue.shift();
+
+  if (startNode === stopNode) {
+    throw new Error(
+      "[ERROR] breadthFirstSearch(start, stop) -> start should not be equal to stop"
+    );
+  }
 
   do {
-    if (parentNode !== stopNode) {
-      for (let key in parentNode.neighbours) {
-        currentNode = parentNode.neighbours[key];
-        if (currentNode.type !== NodeType.NODE_TYPE_OBSTACLE) {
-          currentNode.parent = parentNode;
-          if (currentNode !== stopNode) {
-            queue.push(startNode);
-            visited.push(currentNode);
-          }
-        }
+    for (let key in parentNode.neighbours) {
+      currentNode = parentNode.neighbours[key];
+      if (
+        currentNode != null &&
+        !visited.includes(currentNode) &&
+        currentNode.type !== NodeType.NODE_TYPE_OBSTACLE
+      ) {
+        currentNode.parent = parentNode;
+        if (currentNode !== stopNode) {
+          queue.push(currentNode);
+          visited.push(currentNode);
+        } else break;
       }
-      parentNode = queue.pop();
     }
-  } while (parentNode !== stopNode);
+    parentNode = queue.shift();
+  } while (currentNode !== stopNode);
 
-  currentNode = parentNode;
   while (currentNode.parent) {
-    currentNode.type = NodeType.NODE_TYPE_PATH;
     path.push(currentNode);
     currentNode = currentNode.parent;
-    return Object.freeze({
-      path,
-      visited,
-    });
   }
+
+  return Object.freeze({
+    path,
+    visited,
+  });
 }

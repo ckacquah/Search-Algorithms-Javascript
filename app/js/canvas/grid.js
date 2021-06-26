@@ -30,9 +30,6 @@ const createGrid = function ({
     context.fillStyle = fillColor;
     context.fillRect(0, 0, gridWidth, gridHeight);
   };
-  const init = (draw) => {
-    window.requestAnimationFrame(draw);
-  };
   const drawCell = (x, y, color) => {
     drawGridCell({
       blur: 10,
@@ -50,7 +47,6 @@ const createGrid = function ({
   };
 
   return {
-    init,
     clear,
     drawCell,
     context,
