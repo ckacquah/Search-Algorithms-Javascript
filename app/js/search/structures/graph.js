@@ -7,7 +7,9 @@ export function buildCreateGraph(createNode) {
     let path, visited, startNode, stopNode;
 
     const solve = (searchAlgorithm) => {
-      path, (visited = searchAlgorithm(startNode, stopNode));
+      const results = searchAlgorithm(startNode, stopNode);
+      path = results.path;
+      visited = results.visited;
       return Object.freeze({
         time: 0,
         path,
@@ -48,6 +50,14 @@ export function buildCreateGraph(createNode) {
       stopNode.type = NodeType.NODE_TYPE_STOP;
     };
 
+    const getPath = () => path;
+
+    const getVisited = () => visited;
+
+    const getStop = () => stopNode;
+
+    const getStart = () => startNode;
+
     const reset = () => {};
 
     const forward = () => {};
@@ -56,12 +66,10 @@ export function buildCreateGraph(createNode) {
 
     const complete = () => {};
 
-    return Object.freeze({
+    return {
       network,
       path,
       visited,
-      startNode,
-      stopNode,
       init,
       solve,
       reset,
@@ -71,6 +79,10 @@ export function buildCreateGraph(createNode) {
       complete,
       setStop,
       setStart,
-    });
+      getStop,
+      getStart,
+      getPath,
+      getVisited,
+    };
   };
 }

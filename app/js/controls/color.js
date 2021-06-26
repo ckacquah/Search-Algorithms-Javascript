@@ -3,10 +3,14 @@ import Pickr from "@simonwep/pickr";
 function buildCreateColorPicker(colorInputData) {
   return (id) => {
     const colorPicker = _createColorPicker("#" + id, colorInputData[id]);
-    colorPicker.on("change", (color) => {
-      colorPicker.applyColor(false);
-      colorInputData[id] = color;
-    });
+    colorPicker
+      .on("init", () => {
+        colorInputData[id] = colorPicker.getColor();
+      })
+      .on("change", (color) => {
+        colorPicker.applyColor(false);
+        colorInputData[id] = color;
+      });
     return colorPicker;
   };
 }

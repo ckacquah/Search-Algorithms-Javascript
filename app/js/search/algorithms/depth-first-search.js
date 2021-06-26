@@ -9,7 +9,7 @@ export function depthFirstSearch(startNode, stopNode) {
   startNode.parent = null;
   queue.push(startNode);
   visited.push(startNode);
-  parentNode = queue.pop();
+  parentNode = queue.shift();
 
   if (startNode === stopNode) {
     throw new Error(
@@ -32,12 +32,11 @@ export function depthFirstSearch(startNode, stopNode) {
         } else break;
       }
     }
-    parentNode = queue.pop();
+    parentNode = queue.shift();
   } while (currentNode !== stopNode);
 
   while (currentNode.parent) {
     path.push(currentNode);
-    currentNode.type = NodeType.NODE_TYPE_PATH;
     currentNode = currentNode.parent;
   }
 

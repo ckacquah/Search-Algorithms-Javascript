@@ -9,11 +9,11 @@ export function breadthFistSearch(startNode, stopNode) {
   startNode.parent = null;
   queue.push(startNode);
   visited.push(startNode);
-  parentNode = queue.pop();
+  parentNode = queue.shift();
 
   if (startNode === stopNode) {
     throw new Error(
-      "[ERROR] depthFirstSearch(start, stop) -> start should not be equal to stop"
+      "[ERROR] breadthFirstSearch(start, stop) -> start should not be equal to stop"
     );
   }
 
@@ -32,16 +32,11 @@ export function breadthFistSearch(startNode, stopNode) {
         } else break;
       }
     }
-    parentNode = queue.pop();
+    parentNode = queue.shift();
   } while (currentNode !== stopNode);
 
   while (currentNode.parent) {
     path.push(currentNode);
-    currentNode.type =
-      currentNode.type === NodeType.NODE_TYPE_STOP ||
-      currentNode.type === NodeType.NODE_TYPE_START
-        ? currentNode.type
-        : NodeType.NODE_TYPE_PATH;
     currentNode = currentNode.parent;
   }
 
