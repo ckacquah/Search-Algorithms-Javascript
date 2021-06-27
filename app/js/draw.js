@@ -1,4 +1,9 @@
-export function drawNetwork(grid, graph, colorInputData, colorsPickerIds) {
+export async function drawNetwork(
+  grid,
+  graph,
+  colorInputData,
+  colorsPickerIds
+) {
   const network = graph.network;
   for (let i = 0; i < network.length; i++) {
     for (let j = 0; j < network[i].length; j++) {

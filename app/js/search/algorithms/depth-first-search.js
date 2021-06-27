@@ -13,11 +13,15 @@ export function depthFirstSearch(startNode, stopNode) {
 
   if (startNode === stopNode) {
     throw new Error(
-      "[ERROR] depthFirstSearch(start, stop) -> start should not be equal to stop"
+      "[ERROR] breadthFirstSearch(start, stop) -> start should not be equal to stop"
     );
   }
 
   do {
+    if (parentNode == null) {
+      currentNode.parent = visited[visited.length - 1];
+      break;
+    }
     for (let key in parentNode.neighbours) {
       currentNode = parentNode.neighbours[key];
       if (
