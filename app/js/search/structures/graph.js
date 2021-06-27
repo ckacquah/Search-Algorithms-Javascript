@@ -4,50 +4,60 @@ export function buildCreateGraph(createNode) {
   return (x, y) => {
     const update = () => {};
 
-    let path, visited, startNode, stopNode;
+    let path, visited, startNode, stopNode, obstacles, obstacleCount;
 
     const solve = (searchAlgorithm) => {
+      const t0 = performance.now();
       const results = searchAlgorithm(startNode, stopNode);
+      const t1 = performance.now();
       path = results.path;
       visited = results.visited;
       return Object.freeze({
-        time: 0,
+        time: t1 - t0,
         path,
         visited,
       });
     };
 
     const generateRandomBlocks = (count) => {
-      const indexes = [[], []];
+      obstacles = [[], []];
       let exist, _x, _y;
       for (let i = 0; i < count; i++) {
         do {
           _x = Math.floor(Math.random() * x);
           _y = Math.floor(Math.random() * y);
           for (let j = 0; j < i; j++) {
-            if (indexes[0][j] === x && indexes[1][j] === y) {
+            if (obstacles[0][j] === x && obstacles[1][j] === y) {
               exist = true;
+              break;
             }
           }
         } while (
-          exist &&
-          _x !== stopNode.x &&
-          _y !== stopNode.y &&
-          _x !== startNode.x &&
-          _y !== startNode.y
+          exist ||
+          (_x === stopNode.x && _y === stopNode.y) ||
+          (_x === startNode.x && _y === startNode.y)
         );
-        indexes[0].push(_x);
-        indexes[1].push(_y);
+        obstacles[0].push(_x);
+        obstacles[1].push(_y);
       }
-      return indexes;
+      return obstacles;
     };
 
     const addRandomObstacles = (count) => {
-      let obstacles = generateRandomBlocks(count);
+      obstacleCount = count;
+      generateRandomBlocks(count);
       for (let i = 0; i < count; i++) {
-        const x = obstacles[0][i];
-        const y = obstacles[1][i];
-        network[x][y].type = NodeType.NODE_TYPE_OBSTACLE;
+        const _x = obstacles[0][i];
+        const _y = obstacles[1][i];
+        network[_x][_y].type = NodeType.NODE_TYPE_OBSTACLE;
+      }
+    };
+
+    const removeRandomObstacles = () => {
+      for (let i = 0; i < obstacleCount; i++) {
+        const _x = obstacles[0][i];
+        const _y = obstacles[1][i];
+        network[_x][_y].type = NodeType.NODE_TYPE_EMPTY;
       }
     };
 
@@ -118,6 +128,7 @@ export function buildCreateGraph(createNode) {
       getPath,
       getVisited,
       addRandomObstacles,
+      removeRandomObstacles,
       generateRandomBlocks,
     };
   };
