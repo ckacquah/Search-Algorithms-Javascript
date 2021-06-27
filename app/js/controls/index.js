@@ -5,7 +5,7 @@ const colorInputData = {
   stopColor: "#28AFB0",
   pathColor: "#F4D35E",
   emptyColor: "#19647E",
-  obstacleColor: "#EF997E",
+  obstacleColor: "#A52A2A",
 };
 
 const createColorPicker = buildCreateColorPicker(colorInputData);

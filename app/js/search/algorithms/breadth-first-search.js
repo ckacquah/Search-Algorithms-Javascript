@@ -18,6 +18,7 @@ export function breadthFistSearch(startNode, stopNode) {
   }
 
   do {
+    if (parentNode == null) break;
     for (let key in parentNode.neighbours) {
       currentNode = parentNode.neighbours[key];
       if (
