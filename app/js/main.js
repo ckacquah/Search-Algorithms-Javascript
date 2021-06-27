@@ -7,7 +7,7 @@ import { grid } from "./canvas";
 
 import { drawNetwork } from "./draw";
 import { createGraph, NodeType } from "./search/structures";
-import { breadthFistSearch } from "./search/algorithms";
+import { breadthFistSearch, depthFirstSearch } from "./search/algorithms";
 
 const colorsPickerIds = [
   "pathColor",
@@ -20,7 +20,8 @@ const colorsPickerIds = [
 const graph = createGraph(grid.gridXCellCount, grid.gridYCellCount);
 graph.setStart(0, 0);
 graph.setStop(19, 9);
-graph.solve(breadthFistSearch);
+graph.addRandomObstacles(50);
+graph.solve(depthFirstSearch);
 
 let last = 0;
 
@@ -36,7 +37,7 @@ function updateGraph() {
       graph.getPath()[graph.getPath().length - 1 - last++].type =
         NodeType.NODE_TYPE_PATH;
     }
-  }, 500);
+  }, 100);
 }
 
 updateGraph();

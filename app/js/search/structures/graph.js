@@ -17,6 +17,40 @@ export function buildCreateGraph(createNode) {
       });
     };
 
+    const generateRandomBlocks = (count) => {
+      const indexes = [[], []];
+      let exist, _x, _y;
+      for (let i = 0; i < count; i++) {
+        do {
+          _x = Math.floor(Math.random() * x);
+          _y = Math.floor(Math.random() * y);
+          for (let j = 0; j < i; j++) {
+            if (indexes[0][j] === x && indexes[1][j] === y) {
+              exist = true;
+            }
+          }
+        } while (
+          exist &&
+          _x !== stopNode.x &&
+          _y !== stopNode.y &&
+          _x !== startNode.x &&
+          _y !== startNode.y
+        );
+        indexes[0].push(_x);
+        indexes[1].push(_y);
+      }
+      return indexes;
+    };
+
+    const addRandomObstacles = (count) => {
+      let obstacles = generateRandomBlocks(count);
+      for (let i = 0; i < count; i++) {
+        const x = obstacles[0][i];
+        const y = obstacles[1][i];
+        network[x][y].type = NodeType.NODE_TYPE_OBSTACLE;
+      }
+    };
+
     const network = [];
 
     const init = () => {
@@ -83,6 +117,8 @@ export function buildCreateGraph(createNode) {
       getStart,
       getPath,
       getVisited,
+      addRandomObstacles,
+      generateRandomBlocks,
     };
   };
 }
