@@ -24,16 +24,16 @@ const reload = browserSync.reload;
 
 // Project related variables
 const styleSRC = "app/scss/style.scss";
-const styleURL = "dist/";
+const styleURL = "public/dist/";
 const mapURL = "./";
 
 const jsSRC = "app/js/";
 const jsFront = "main.js";
 const jsFiles = [jsFront];
-const jsURL = "dist/";
+const jsURL = "public/dist";
 
 const htmlSRC = "*.html";
-const htmlURL = "dist/";
+const htmlURL = "public/";
 
 const styleWatch = "app/scss/**/*.scss";
 const jsWatch = "app/js/**/*.js";
